@@ -33,7 +33,7 @@ jobs:
           briefcase package iOS
 
       - name: Upload .ipa as artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: ios-ipa
           path: ios/build/ios/xcode/build/Release-iphoneos/*.ipa
