@@ -7,30 +7,21 @@ on:
 
 jobs:
   build:
-    runs-on: macos-latest
+    runs-on: macos-latest  # Ensure this line is present
 
     steps:
-    - name: Checkout source
-      uses: actions/checkout@v2
-
+    - uses: actions/checkout@v2
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: '3.8'
-
+        python-version: '3.9'
     - name: Install dependencies
       run: |
-        python -m pip install pip==23.3.1
+        python -m pip install --upgrade pip
         pip install briefcase
-
     - name: Build iOS app
       run: |
-        export PIP_DISABLE_PIP_VERSION_CHECK=1
-        export PIP_NO_PYTHON_VERSION_WARNING=1
         briefcase build iOS
-
-    - name: Package iOS app
+    - name: Deploy iOS app
       run: |
-        export PIP_DISABLE_PIP_VERSION_CHECK=1
-        export PIP_NO_PYTHON_VERSION_WARNING=1
         briefcase package iOS
